@@ -69,7 +69,7 @@ const ESTIMATOR_DATA = {
     doorstepTime: '1 - 2 Hours at Doorstep in Boisar',
     warranty: '3 to 12 Months Warranty on Parts',
     issues: [
-      { id: 'lap_os', name: 'Windows 10/11 Format & Fresh Install + Antivirus Setup', minPrice: 499, maxPrice: 650, recommended: true, desc: 'Clean OS install, official drivers, basic software bundle & tune-up' },
+      { id: 'lap_os', name: 'Windows 10/11 Fresh Install + Antivirus Setup', minPrice: 499, maxPrice: 650, recommended: true, desc: 'Clean OS install, official drivers, basic software bundle & tune-up' },
       { id: 'lap_ssd', name: 'Ultra-Fast 256GB / 512GB NVMe SSD Upgrade', minPrice: 1599, maxPrice: 2699, recommended: true, desc: 'Make old laptops boot in 5 seconds + OS transfer included' },
       { id: 'lap_ram', name: 'RAM Memory Upgrade (8GB / 16GB DDR4)', minPrice: 1250, maxPrice: 2200, recommended: false, desc: 'Lag-free multitasking, Chrome tabs, and Office performance' },
       { id: 'lap_thermal', name: 'Deep Internal Cleaning & Thermal Grizzly Repaste', minPrice: 550, maxPrice: 750, recommended: false, desc: 'Fix overheating, noisy fan, and unexpected auto-shutdowns' },
@@ -128,6 +128,19 @@ const ESTIMATOR_DATA = {
       { id: 'amc_standard', name: 'Corporate Office / Clinic AMC (6 to 15 Systems)', minPrice: 8500, maxPrice: 14000, recommended: true, desc: 'Scheduled monthly checks, network maintenance & zero downtime assurance' },
       { id: 'amc_tarapur_midc', name: 'Tarapur MIDC Factory / Plant AMC (16+ Workstations)', minPrice: 16000, maxPrice: 28000, recommended: false, desc: 'Full IT infrastructure care, server backup monitoring, industrial reliability' }
     ]
+  },
+  ewaste: {
+    categoryName: 'E-Waste Collection & Scrap Disposal',
+    baseVisitCharge: 0,
+    doorstepTime: 'Free Doorstep Scrap Pickup in Boisar & Tarapur MIDC',
+    warranty: '100% Certified Eco-Friendly Recycling & Safe Disposal',
+    issues: [
+      { id: 'ewaste_pc', name: 'Old / Scrap Desktop PCs, Towers & Monitors', minPrice: 0, maxPrice: 0, recommended: true, desc: 'Eco-friendly collection of vintage CPUs, dead towers, TFT/CRT monitors & cabinets' },
+      { id: 'ewaste_laptop', name: 'Broken / Dead Laptops & Adapters', minPrice: 0, maxPrice: 0, recommended: true, desc: 'Doorstep scrap pickup of broken laptops, motherboard scraps, non-working chargers' },
+      { id: 'ewaste_printer', name: 'Defunct Printers, Scanners & Toners', minPrice: 0, maxPrice: 0, recommended: true, desc: 'Scrap pickup for HP, Canon, Epson printers, scanners, dry toners & cartridges' },
+      { id: 'ewaste_mobo', name: 'Scrap Motherboards, Circuit PCBs & Electronics', minPrice: 0, maxPrice: 0, recommended: false, desc: 'Collection of circuit boards, RAM, graphics cards, SMPS, networking switches' },
+      { id: 'ewaste_bulk', name: 'Tarapur MIDC Factory / Office Bulk E-Waste Clearance', minPrice: 0, maxPrice: 0, recommended: false, desc: 'Complete commercial e-waste clearance with vehicle pickup & fair scrap value' }
+    ]
   }
 };
 
@@ -152,11 +165,17 @@ function initRepairEstimator() {
 
     issuesContainer.innerHTML = '';
 
+    const isEwaste = selectedCategory === 'ewaste';
+
     catData.issues.forEach(issue => {
       const isChecked = selectedIssues.has(issue.id);
       const itemEl = document.createElement('div');
       itemEl.className = `issue-pill-item ${isChecked ? 'active' : ''}`;
       itemEl.dataset.issueId = issue.id;
+
+      const priceHtml = isEwaste
+        ? `<div class="issue-pill-price text-success fw-bold">Free Pickup / Scrap Value</div><div class="text-muted" style="font-size: 0.72rem;">Eco Disposal</div>`
+        : `<div class="issue-pill-price">₹${issue.minPrice.toLocaleString('en-IN')} - ₹${issue.maxPrice.toLocaleString('en-IN')}</div><div class="text-muted" style="font-size: 0.72rem;">Estimated Cost</div>`;
 
       itemEl.innerHTML = `
         <div class="d-flex align-items-center gap-3">
@@ -169,8 +188,7 @@ function initRepairEstimator() {
           </div>
         </div>
         <div class="text-end ps-3">
-          <div class="issue-pill-price">₹${issue.minPrice.toLocaleString('en-IN')} - ₹${issue.maxPrice.toLocaleString('en-IN')}</div>
-          <div class="text-muted" style="font-size: 0.72rem;">Estimated Cost</div>
+          ${priceHtml}
         </div>
       `;
 
@@ -214,13 +232,21 @@ function initRepairEstimator() {
     });
 
     if (selectedIssues.size === 0) {
-      minTotal = catData.baseVisitCharge;
-      maxTotal = catData.baseVisitCharge + 150;
-      selectedNames.push('Doorstep Diagnostics & Inspection in Boisar');
+      if (selectedCategory === 'ewaste') {
+        selectedNames.push('E-Waste Doorstep Collection / Scrap Inspection');
+      } else {
+        minTotal = catData.baseVisitCharge;
+        maxTotal = catData.baseVisitCharge + 150;
+        selectedNames.push('Doorstep Diagnostics & Inspection in Boisar');
+      }
     }
 
     if (totalPriceElem) {
-      totalPriceElem.textContent = `₹${minTotal.toLocaleString('en-IN')} - ₹${maxTotal.toLocaleString('en-IN')}`;
+      if (selectedCategory === 'ewaste') {
+        totalPriceElem.textContent = 'Free Pickup / Best Value';
+      } else {
+        totalPriceElem.textContent = `₹${minTotal.toLocaleString('en-IN')} - ₹${maxTotal.toLocaleString('en-IN')}`;
+      }
     }
     if (categorySummaryElem) {
       categorySummaryElem.textContent = catData.categoryName;
@@ -235,14 +261,18 @@ function initRepairEstimator() {
       warrantyElem.textContent = catData.warranty;
     }
 
+    const costText = selectedCategory === 'ewaste'
+      ? 'Free Doorstep Pickup / Best Scrap Valuation'
+      : `₹${minTotal.toLocaleString('en-IN')} - ₹${maxTotal.toLocaleString('en-IN')}`;
+
     const waText = encodeURIComponent(
       `Hello Sadguru Computers!\n\n` +
-      `I checked the repair estimate on your website:\n` +
+      `I checked the service options on your website:\n` +
       `📌 *Category*: ${catData.categoryName}\n` +
-      `🔧 *Selected Services*:\n- ${selectedNames.join('\n- ')}\n` +
-      `💰 *Estimated Cost*: ₹${minTotal.toLocaleString('en-IN')} - ₹${maxTotal.toLocaleString('en-IN')}\n` +
+      `🔧 *Selected Items/Services*:\n- ${selectedNames.join('\n- ')}\n` +
+      `💰 *Estimated Value/Cost*: ${costText}\n` +
       `📍 *Location*: Doorstep Service in Boisar / Tarapur\n\n` +
-      `Please let me know when your technician can visit.`
+      `Please let me know when your team can schedule the visit/pickup.`
     );
 
     const whatsappNumber = '918149359795';
