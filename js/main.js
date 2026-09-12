@@ -111,10 +111,10 @@ const ESTIMATOR_DATA = {
     doorstepTime: 'Same-Day Build & Delivery in Boisar',
     warranty: '3 Years Comprehensive Brand Warranty',
     issues: [
-      { id: 'build_office', name: 'Essential Office / Tally / Accounting Rig Assembly', minPrice: 18500, maxPrice: 28000, recommended: true, desc: 'Intel Core i3/i5 or Ryzen 3, 16GB RAM, 512GB SSD, Silent Cabinet' },
-      { id: 'build_gaming_budget', name: '1080p Esports Gaming PC (GTA V, Valorant, CS2)', minPrice: 38000, maxPrice: 52000, recommended: true, desc: 'Intel i5 / Ryzen 5 + GTX 1650 / RTX 3050, 16GB RAM, High Airflow ARGB' },
-      { id: 'build_gaming_pro', name: 'High-End 1440p / 4K Gaming & Video Editing Rig', minPrice: 65000, maxPrice: 125000, recommended: false, desc: 'Ryzen 7 / Intel i7 + RTX 4060 / 4070 Super, 32GB DDR5, 1TB Gen4 SSD' },
-      { id: 'build_tarapur_cad', name: 'Tarapur Industrial 3D CAD / SolidWorks Workstation', minPrice: 55000, maxPrice: 95000, recommended: false, desc: 'High-stability workstation certified for 24/7 manufacturing plants' },
+      { id: 'build_office', name: 'Smart Office Pro Setup (Tally, GST & Billing)', minPrice: 12999, maxPrice: 18500, recommended: true, desc: 'Intel Core i3, 8GB RAM, 256GB NVMe SSD, 19" LED Monitor, ATX Cabinet & USB Peripherals' },
+      { id: 'build_gaming_budget', name: 'Performance Pro Desktop (Coding & Fast Multitasking)', minPrice: 28000, maxPrice: 38000, recommended: true, desc: 'Intel i5 9th Gen, 8GB DDR4, 256GB SSD + 500GB HDD, ATX Gaming Cabinet, 19" Monitor' },
+      { id: 'build_tarapur_cad', name: 'CAD Station (AutoCAD, SolidWorks & 1080p Video)', minPrice: 48000, maxPrice: 65000, recommended: false, desc: 'Intel i5 12th Gen, H610, 2GB Dedicated GPU, 8GB RAM, 22" FHD Monitor & Antivirus' },
+      { id: 'build_gaming_pro', name: 'Ultra Creator Rig (4K Video, 3D & RTX 4070 Ti Super)', minPrice: 193500, maxPrice: 225000, recommended: false, desc: 'Intel i7 14700F, RTX 4070 Ti Super 16GB, 32GB DDR5, 3TB NVMe, 27" 4K Color-Calibrated IPS' },
       { id: 'build_assembly_only', name: 'PC Assembly Only (Client Provides All Components)', minPrice: 999, maxPrice: 1499, recommended: false, desc: 'Precision assembly, cable management, BIOS setup & stress test' }
     ]
   },
