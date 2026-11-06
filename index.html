@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SADGURU COMPUTERS | Computer, Laptop & Printer Repair at Doorstep in Boisar</title>
-  <meta name="description" content="SADGURU COMPUTERS - Premier doorstep computer, laptop, and printer repair services in Boisar & Tarapur MIDC. Ultra-fast SSD upgrades, custom gaming PC builds, and corporate AMC contracts. Direct phone & WhatsApp support.">
-  <meta name="keywords" content="computer repair boisar, laptop repair boisar, printer repair boisar, custom pc build boisar, gaming pc boisar, doorstep computer service boisar, tarapur midc amc computer, saravali computer repair, taps colony, barc colony, sadguru computers">
+  <meta name="description" content="SADGURU COMPUTERS - Premier doorstep computer, laptop, and printer repair services in Boisar & Tarapur MIDC. Ultra-fast SSD upgrades, custom gaming PC builds, and corporate AMC contracts. Diwali Special: custom PC build from ₹10,999/-. Exchange your computer e-waste for a pen drive, antivirus & more. Direct phone & WhatsApp support.">
+  <meta name="theme-color" content="#b91c1c">
+  <meta name="keywords" content="diwali offer computer boisar, diwali custom pc offer, e-waste exchange boisar, computer repair boisar, laptop repair boisar, printer repair boisar, custom pc build boisar, gaming pc boisar, doorstep computer service boisar, tarapur midc amc computer, saravali computer repair, taps colony, barc colony, sadguru computers">
   
   <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,9 +20,48 @@
   
   <!-- Custom Modern Light Theme CSS -->
   <link rel="stylesheet" href="css/style.css">
+  <!-- Diwali theme layer (decorations, popup, e-waste exchange) -->
+  <link rel="stylesheet" href="css/diwali.css">
   <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
+
+<!-- Diya icon (reused in strip, popup, chip & banners) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="dyBowl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f08c00"/><stop offset="1" stop-color="#9a3412"/></linearGradient>
+      <radialGradient id="dyFlame" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#fff9db"/><stop offset=".45" stop-color="#ffd43b"/><stop offset="1" stop-color="#f76707"/></radialGradient>
+    </defs>
+    <symbol id="diya" viewBox="0 0 64 64">
+      <path d="M32 3 C40 14 45 21 38 30 C36 33 28 33 26 30 C19 21 24 14 32 3Z" fill="url(#dyFlame)"/>
+      <path d="M32 16 C35 21 36 25 32 29 C28 25 29 21 32 16Z" fill="#fff4b0" opacity=".9"/>
+      <rect x="30.6" y="30" width="2.8" height="7" rx="1.2" fill="#3b1d0a"/>
+      <path d="M4 38 C14 34 50 34 60 38 C58 52 46 60 32 60 C18 60 6 52 4 38Z" fill="url(#dyBowl)"/>
+      <ellipse cx="32" cy="38" rx="28" ry="4.5" fill="#ffa94d"/>
+      <ellipse cx="32" cy="38.8" rx="22" ry="2.6" fill="#7c2d12"/>
+      <circle cx="17" cy="49" r="1.9" fill="#ffd43b"/><circle cx="32" cy="53" r="1.9" fill="#ffd43b"/><circle cx="47" cy="49" r="1.9" fill="#ffd43b"/>
+    </symbol>
+  </svg>
+
+  <!-- =========================================================================
+       0. DIWALI ANNOUNCEMENT STRIP
+       ========================================================================= -->
+  <div class="diwali-strip" role="region" aria-label="Diwali offers">
+    <div class="diwali-strip-inner">
+      <div class="diwali-strip-track">
+        <div class="diwali-strip-group">
+          <span class="diwali-strip-item"><svg aria-hidden="true"><use href="#diya"/></svg> <strong>Happy Diwali</strong> from Sadguru Computers!</span>
+          <span class="diwali-strip-item"><span class="strip-dot">✦</span> Diwali Special: Custom PC from <strong>₹10,999/-</strong> &nbsp;<a href="#" data-bs-toggle="modal" data-bs-target="#diwaliOfferModal">See offer</a></span>
+          <span class="diwali-strip-item"><span class="strip-dot">✦</span> Exchange your old computer e-waste for a <strong>pen drive, antivirus &amp; more</strong> &nbsp;<a href="#ewaste">Know more</a></span>
+        </div>
+        <div class="diwali-strip-group dup" aria-hidden="true">
+          <span class="diwali-strip-item"><svg aria-hidden="true"><use href="#diya"/></svg> <strong>Happy Diwali</strong> from Sadguru Computers!</span>
+          <span class="diwali-strip-item"><span class="strip-dot">✦</span> Diwali Special: Custom PC from <strong>₹10,999/-</strong> &nbsp;<a href="#" tabindex="-1" data-bs-toggle="modal" data-bs-target="#diwaliOfferModal">See offer</a></span>
+          <span class="diwali-strip-item"><span class="strip-dot">✦</span> Exchange your old computer e-waste for a <strong>pen drive, antivirus &amp; more</strong> &nbsp;<a href="#ewaste" tabindex="-1">Know more</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- =========================================================================
        1. TOP DIRECT CONTACT & BOISAR DOORSTEP ALERT BAR
@@ -75,6 +115,9 @@
             <a class="nav-link nav-link-custom" href="#customPc">Custom PCs</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link nav-link-custom" href="#ewaste">E‑Waste</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link nav-link-custom" href="#amc">AMC Contracts</a>
           </li>
           <li class="nav-item">
@@ -106,6 +149,12 @@
         <!-- Left Hero Content -->
         <div class="col-lg-6">
           
+          <button type="button" class="hero-diwali-pill" data-bs-toggle="modal" data-bs-target="#diwaliOfferModal">
+            <svg aria-hidden="true"><use href="#diya"/></svg>
+            <span>Diwali Special: Custom PC from ₹10,999/-</span>
+            <i class="bi bi-arrow-right pill-arrow"></i>
+          </button>
+          <br>
           <div class="d-inline-flex align-items-center gap-2 px-3 py-1 mb-3 rounded-pill bg-white shadow-sm border border-primary-subtle">
             <span class="badge bg-primary rounded-pill">DIRECT TECH SUPPORT</span>
             <span class="small fw-semibold text-dark">No Helpline Hold • Direct Call to Technician</span>
@@ -459,7 +508,99 @@
     </div>
   </section>
 
-  <!-- =========================================================================
+<!-- =========================================================================
+       5B. E-WASTE EXCHANGE - GIVE E-WASTE, GET NEW COMPUTER PARTS
+       ========================================================================= -->
+  <section class="py-5 ewaste-section" id="ewaste">
+    <div class="container py-4">
+
+      <div class="row align-items-center gy-5">
+        <div class="col-lg-6">
+          <span class="section-tag"><i class="bi bi-recycle me-1"></i> Diwali E-Waste Exchange</span>
+          <h2 class="ew-headline">Give Your Computer Waste, <span class="ew-get">Get Brand-New Parts!</span></h2>
+          <p class="ew-lead">
+            Dead CPUs, broken monitors and old printers are just gathering dust. This Diwali, hand them over to us and walk away with brand-new computer goodies.
+          </p>
+          <ul class="ew-lines">
+            <li><i class="bi bi-stars"></i><span>Clear the clutter, light up your Diwali. Your scrap is our treasure!</span></li>
+            <li><i class="bi bi-gift-fill"></i><span>Swap your old junk for a brand-new <strong>pen drive, antivirus</strong> &amp; more.</span></li>
+            <li><i class="bi bi-truck"></i><span>Doorstep pickup across Boisar &amp; Tarapur MIDC. We come to you.</span></li>
+            <li><i class="bi bi-recycle"></i><span>Recycled responsibly: good for your wallet, great for the planet.</span></li>
+          </ul>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="https://wa.me/918149359795?text=Hello%20Sadguru%20Computers%2C%20I%20want%20to%20exchange%20my%20old%20computer%20e-waste%20for%20the%20Diwali%20reward%20%28pen%20drive%20%2F%20antivirus%20%2F%20new%20computer%20parts%29.%20Please%20arrange%20a%20pickup." target="_blank" rel="noopener" class="btn btn-whatsapp-custom">
+              <i class="bi bi-whatsapp"></i> Claim My Reward
+            </a>
+            <a href="tel:+918149359795" class="btn btn-outline-custom">
+              <i class="bi bi-telephone-fill"></i> Call 81493 59795
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="ew-media">
+            <img src="ewaste_recycling_1788445680639.jpg" alt="Old computers, printers and motherboards collected for e-waste recycling" loading="lazy" onerror="this.onerror=null; this.src='hero_tech_repair_1787159866331.jpg';">
+            <div class="ew-float"><b>FREE</b>Doorstep Pickup</div>
+            <div class="ew-media-caption">
+              <small>Old in, new out</small>
+              Your old computer is worth more than you think.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Give -> Get -->
+      <div class="ew-exchange">
+        <div class="ew-panel">
+          <span class="ew-panel-tag">You give</span>
+          <h3>Your Old E-Waste</h3>
+          <div class="ew-items">
+            <div class="ew-item"><i class="bi bi-pc-display"></i> Old Desktop PCs / CPUs</div>
+            <div class="ew-item"><i class="bi bi-display"></i> Dead Monitors</div>
+            <div class="ew-item"><i class="bi bi-laptop"></i> Broken Laptops</div>
+            <div class="ew-item"><i class="bi bi-printer"></i> Defunct Printers</div>
+            <div class="ew-item"><i class="bi bi-motherboard"></i> Motherboards &amp; PCBs</div>
+            <div class="ew-item"><i class="bi bi-keyboard"></i> Keyboards, Mice &amp; Cables</div>
+          </div>
+        </div>
+
+        <div class="ew-arrow" aria-hidden="true"><i class="bi bi-arrow-right"></i></div>
+
+        <div class="ew-panel is-get">
+          <span class="ew-panel-tag">You get</span>
+          <h3>Brand-New Computer Goodies</h3>
+          <div class="ew-items">
+            <div class="ew-item is-hot"><i class="bi bi-usb-drive-fill"></i> Brand-New Pen Drive <span class="ew-badge">HOT</span></div>
+            <div class="ew-item is-hot"><i class="bi bi-shield-check"></i> Antivirus Licence <span class="ew-badge">HOT</span></div>
+            <div class="ew-item is-hot"><i class="bi bi-box-seam-fill"></i> More new computer parts &amp; accessories <span class="ew-badge">ASK US</span></div>
+          </div>
+          <p class="small text-muted mt-3 mb-0"><i class="bi bi-info-circle me-1"></i> Your reward depends on the type and quantity of e-waste. Message us for details.</p>
+        </div>
+      </div>
+
+      <!-- How it works -->
+      <div class="ew-steps">
+        <div class="ew-step"><i class="bi bi-whatsapp"></i><h4>Message or Call Us</h4><p>Tell us what old equipment you have. A photo helps!</p></div>
+        <div class="ew-step"><i class="bi bi-truck"></i><h4>We Pick It Up</h4><p>Doorstep collection in Boisar, Tarapur &amp; nearby areas.</p></div>
+        <div class="ew-step"><i class="bi bi-clipboard-check"></i><h4>We Check It</h4><p>Our team checks your e-waste and confirms your reward.</p></div>
+        <div class="ew-step"><i class="bi bi-gift"></i><h4>You Get Rewarded</h4><p>Receive your brand-new pen drive, antivirus or parts.</p></div>
+      </div>
+
+      <div class="ew-cta">
+        <div>
+          <h3>Old computers lying around? Turn them into rewards!</h3>
+          <p>Factories and offices in Tarapur MIDC can book bulk e-waste clearance too.</p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="https://wa.me/918149359795?text=Hello%20Sadguru%20Computers%2C%20I%20want%20to%20exchange%20my%20old%20computer%20e-waste%20for%20the%20Diwali%20reward%20%28pen%20drive%20%2F%20antivirus%20%2F%20new%20computer%20parts%29.%20Please%20arrange%20a%20pickup." target="_blank" rel="noopener" class="btn-gold"><i class="bi bi-whatsapp"></i> WhatsApp Us</a>
+          <a href="tel:+918149359795" class="btn-ghost"><i class="bi bi-telephone-fill"></i> Call Now</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+    <!-- =========================================================================
        6. INTERACTIVE REPAIR ESTIMATE CALCULATOR SECTION
        ========================================================================= -->
   <section class="py-5 bg-light-blue" id="estimator">
@@ -610,6 +751,30 @@
         </p>
       </div>
 
+      <!-- Diwali Special PC Offer Banner -->
+      <div class="diwali-offer-banner">
+        <div class="row align-items-center gy-4">
+          <div class="col-lg-8">
+            <span class="dob-tag"><svg aria-hidden="true" width="22" height="22"><use href="#diya"/></svg> Diwali Special Offer</span>
+            <h3 class="dob-title">Custom PC Build</h3>
+            <div class="dob-price"><small>Starting from</small>₹10,999/-</div>
+            <ul class="dob-chips">
+              <li><i class="bi bi-cpu"></i> Intel i3</li>
+              <li><i class="bi bi-device-ssd"></i> SSD</li>
+              <li><i class="bi bi-memory"></i> 8GB RAM</li>
+              <li><i class="bi bi-display"></i> 19" Monitor</li>
+              <li><i class="bi bi-box-seam"></i> Full Setup</li>
+            </ul>
+          </div>
+          <div class="col-lg-4">
+            <div class="d-flex flex-lg-column flex-wrap gap-3">
+              <a href="tel:+918149359795" class="btn-gold justify-content-center"><i class="bi bi-telephone-fill"></i> Call Now</a>
+              <a href="https://wa.me/918149359795?text=Hello%20Sadguru%20Computers%2C%20I%20am%20interested%20in%20the%20Diwali%20Special%20Custom%20PC%20Build%20starting%20at%20%E2%82%B910%2C999%2F-%20%28Intel%20i3%20%2B%20SSD%20%2B%208GB%20RAM%20%2B%2019%20inch%20monitor%20%2B%20full%20setup%29." target="_blank" rel="noopener" class="btn-ghost justify-content-center"><i class="bi bi-whatsapp"></i> WhatsApp Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="row g-4">
 
         <!-- Rig 1: Smart Office Pro -->
@@ -730,7 +895,7 @@
         <div class="col-md-6 col-lg-3">
           <div class="pc-rig-card">
             <div class="pc-rig-header">
-              <span class="badge text-white pc-rig-badge" style="background:#7c3aed;">CAD & Design</span>
+              <span class="badge text-white pc-rig-badge" style="background:#9d174d;">CAD & Design</span>
               <h4 class="h5 fw-bold mb-1">CAD Station</h4>
               <div class="text-muted small rig-subtitle">AutoCAD, SolidWorks, 1080p Premiere Pro & Design</div>
               <div class="h4 text-primary fw-bold mt-2 mb-0">₹48,000 <small class="text-muted fs-6 fw-normal">approx</small></div>
@@ -1186,7 +1351,52 @@
     </a>
   </div>
 
-  <!-- =========================================================================
+<!-- =========================================================================
+       11B. DIWALI OFFER POPUP + REOPEN CHIP
+       ========================================================================= -->
+  <button type="button" class="diwali-chip" id="diwaliChip" data-bs-toggle="modal" data-bs-target="#diwaliOfferModal" aria-label="Open Diwali special offer">
+    <svg aria-hidden="true"><use href="#diya"/></svg>
+    <span>Diwali Offer<small>PC from ₹10,999/-</small></span>
+  </button>
+
+  <div class="modal fade diwali-modal" id="diwaliOfferModal" tabindex="-1" aria-labelledby="diwaliOfferTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <button type="button" class="dm-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+
+        <div class="dm-hero">
+          <svg class="dm-diya" aria-hidden="true"><use href="#diya"/></svg>
+          <div><span class="dm-kicker">Diwali Special Offer</span></div>
+          <h2 class="dm-title" id="diwaliOfferTitle">Custom PC <span>Build</span></h2>
+        </div>
+
+        <div class="dm-price-card">
+          <div class="dm-from">Starting from</div>
+          <div class="dm-price">₹10,999<small>/-</small></div>
+          <div class="dm-sub">A complete computer, ready to use</div>
+        </div>
+
+        <div class="dm-body">
+          <ul class="dm-list">
+            <li><i class="bi bi-cpu-fill"></i> Intel i3 Processor</li>
+            <li><i class="bi bi-device-ssd-fill"></i> SSD Storage</li>
+            <li><i class="bi bi-memory"></i> 8GB RAM</li>
+            <li><i class="bi bi-display-fill"></i> 19" Monitor</li>
+            <li class="wide"><i class="bi bi-box-seam-fill"></i> + Full Setup included</li>
+          </ul>
+
+          <div class="dm-actions">
+            <a href="tel:+918149359795" class="btn btn-primary-custom"><i class="bi bi-telephone-fill"></i> Call Now</a>
+            <a href="https://wa.me/918149359795?text=Hello%20Sadguru%20Computers%2C%20I%20am%20interested%20in%20the%20Diwali%20Special%20Custom%20PC%20Build%20starting%20at%20%E2%82%B910%2C999%2F-%20%28Intel%20i3%20%2B%20SSD%20%2B%208GB%20RAM%20%2B%2019%20inch%20monitor%20%2B%20full%20setup%29." target="_blank" rel="noopener" class="btn btn-whatsapp-custom"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+          </div>
+          <p class="dm-note">Happy Diwali from Sadguru Computers, Boisar</p>
+          <button type="button" class="dm-skip" data-bs-dismiss="modal">Maybe later</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- =========================================================================
        12. FOOTER
        ========================================================================= -->
   <footer class="footer-custom">
@@ -1216,7 +1426,7 @@
             <li><a href="#services" class="footer-link">Printer Repair</a></li>
             <li><a href="#customPc" class="footer-link">Custom Gaming PCs</a></li>
             <li><a href="#amc" class="footer-link">Corporate AMC</a></li>
-            <li><a href="#services" class="footer-link">E-Waste Collection</a></li>
+            <li><a href="#ewaste" class="footer-link">E-Waste Rewards</a></li>
           </ul>
         </div>
 
@@ -1224,6 +1434,7 @@
           <h6 class="fw-bold text-dark mb-3">Quick Links</h6>
           <ul class="list-unstyled">
             <li><a href="#services" class="footer-link">Our Services</a></li>
+            <li><a href="#ewaste" class="footer-link">E-Waste Exchange</a></li>
             <li><a href="#doorstep" class="footer-link">Boisar Doorstep</a></li>
             <li><a href="#estimator" class="footer-link">Repair Estimator</a></li>
             <li><a href="#contact" class="footer-link">Direct Contacts</a></li>

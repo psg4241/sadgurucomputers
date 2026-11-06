@@ -1,0 +1,568 @@
+/* ==========================================================================
+   SADGURU COMPUTERS - DIWALI THEME LAYER
+   Loaded after style.css. Contains: Bootstrap colour overrides, festive
+   decorations, Diwali offer popup, offer banner and the E-Waste Exchange
+   section. Palette: saffron #d9480f · crimson #b91c1c · maroon #7f1d1d ·
+   gold #fab005 · cream #fffaf2
+   ========================================================================== */
+
+:root {
+  --diwali-maroon: #7f1d1d;
+  --diwali-crimson: #b91c1c;
+  --diwali-saffron: #d9480f;
+  --diwali-gold: #fab005;
+  --diwali-gold-soft: #ffd43b;
+  --diwali-cream: #fffaf2;
+
+  /* Re-point Bootstrap's "primary" utilities (bg-primary, text-primary, badges…) */
+  --bs-primary: #d9480f;
+  --bs-primary-rgb: 217, 72, 15;
+  --bs-link-color: #d9480f;
+  --bs-link-hover-color: #b93a08;
+  --bs-primary-text-emphasis: #7c2d12;
+  --bs-primary-bg-subtle: #ffe8cc;
+  --bs-primary-border-subtle: #ffc078;
+  --bs-info-text-emphasis: #7c2d12;
+}
+
+body { background-color: var(--diwali-cream); }
+
+/* Bootstrap buttons that carry their own colour variables */
+.btn-outline-primary {
+  --bs-btn-color: #d9480f;
+  --bs-btn-border-color: #d9480f;
+  --bs-btn-hover-bg: #d9480f;
+  --bs-btn-hover-border-color: #d9480f;
+  --bs-btn-active-bg: #b93a08;
+  --bs-btn-active-border-color: #b93a08;
+  --bs-btn-focus-shadow-rgb: 217, 72, 15;
+}
+.btn-primary {
+  --bs-btn-bg: #d9480f;
+  --bs-btn-border-color: #d9480f;
+  --bs-btn-hover-bg: #b93a08;
+  --bs-btn-hover-border-color: #b93a08;
+  --bs-btn-active-bg: #b93a08;
+  --bs-btn-focus-shadow-rgb: 217, 72, 15;
+}
+.form-check-input:checked { background-color: #d9480f; border-color: #d9480f; }
+.form-check-input:focus { border-color: #ffc078; box-shadow: 0 0 0 .25rem rgba(217, 72, 15, .25); }
+.text-info { color: #c2410c !important; }
+
+/* Existing blocks that need a deeper festive treatment */
+.boisar-spotlight-section {
+  background: linear-gradient(135deg, #7f1d1d 0%, #b91c1c 55%, #d9480f 100%);
+}
+.boisar-spotlight-section .text-primary { color: #b91c1c !important; }
+.top-contact-bar { background: #fff6e6; border-bottom-color: #f6dcae; }
+.footer-custom { background: #fff6e6; border-top: 3px solid var(--diwali-gold); }
+.section-tag { background: #fff0dc; border-color: #ffd8a8; color: #b93a08; }
+.hero-headline .gradient-text,
+.gradient-text { background: linear-gradient(135deg, #d9480f 0%, #b91c1c 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* Keep the nav tidy now that there is one more link */
+.navbar-custom .btn { white-space: nowrap; }
+@media (min-width: 992px) { .nav-link-custom { padding: 8px 9px !important; font-size: .9rem; } }
+
+/* ---------- 1. Festive announcement strip ---------- */
+.diwali-strip {
+  background: linear-gradient(90deg, #7f1d1d 0%, #b91c1c 35%, #d9480f 70%, #b91c1c 100%);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 2px solid var(--diwali-gold);
+}
+.diwali-strip-inner { display: flex; align-items: center; }
+.diwali-strip-track {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  animation: stripScroll 38s linear infinite;
+  width: max-content;
+}
+.diwali-strip-group { display: flex; flex-shrink: 0; min-width: 100vw; justify-content: space-around; }
+.diwali-strip-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 34px 8px 0;
+}
+.diwali-strip-item svg { width: 20px; height: 20px; flex-shrink: 0; }
+.diwali-strip-item .strip-dot { color: var(--diwali-gold-soft); }
+.diwali-strip-item strong { color: var(--diwali-gold-soft); }
+.diwali-strip a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.diwali-strip:hover .diwali-strip-track { animation-play-state: paused; }
+@keyframes stripScroll { to { transform: translateX(-50%); } }
+
+/* ---------- 2. Fairy lights hanging off the sticky navbar ---------- */
+.navbar-custom { border-bottom: 2px solid var(--diwali-gold); }
+.navbar-custom::before,
+.navbar-custom::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: 100%;
+  height: 34px;
+  background-repeat: repeat-x;
+  background-size: 160px 34px;
+  pointer-events: none;
+  z-index: 5;
+}
+.navbar-custom::before { background-image: url('../assets/lights-a.svg'); animation: twinkleA 1.8s ease-in-out infinite; }
+.navbar-custom::after  { background-image: url('../assets/lights-b.svg'); animation: twinkleB 1.8s ease-in-out infinite; }
+@keyframes twinkleA { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+@keyframes twinkleB { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+
+/* ---------- 3. Hero ---------- */
+.hero-photographic-section { padding-top: 70px; }
+.hero-photographic-section::before {
+  content: '';
+  position: absolute;
+  width: 460px; height: 460px;
+  left: -170px; bottom: -170px;
+  background: url('../assets/mandala.svg') center / contain no-repeat;
+  opacity: .22;
+  animation: mandalaSpin 120s linear infinite;
+  pointer-events: none;
+}
+.hero-photographic-section::after {
+  content: '';
+  position: absolute;
+  width: 380px; height: 380px;
+  right: -140px; top: -140px;
+  background: url('../assets/mandala.svg') center / contain no-repeat;
+  opacity: .16;
+  animation: mandalaSpin 160s linear infinite reverse;
+  pointer-events: none;
+}
+@keyframes mandalaSpin { to { transform: rotate(360deg); } }
+
+.hero-diwali-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 16px 7px 10px;
+  margin-bottom: 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fff3bf 0%, #ffe066 100%);
+  border: 2px solid var(--diwali-gold);
+  color: #7c2d12;
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(250, 176, 5, .35);
+  transition: var(--transition-smooth);
+}
+.hero-diwali-pill:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(250, 176, 5, .5); }
+.hero-diwali-pill svg { width: 26px; height: 26px; }
+.hero-diwali-pill .pill-arrow { transition: transform .25s ease; }
+.hero-diwali-pill:hover .pill-arrow { transform: translateX(4px); }
+
+.spark {
+  position: absolute;
+  bottom: -12px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff7c2 0%, #fab005 60%, rgba(250,176,5,0) 72%);
+  box-shadow: 0 0 10px 2px rgba(250, 176, 5, .75);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  animation: sparkRise linear infinite;
+}
+@keyframes sparkRise {
+  0%   { transform: translateY(0) scale(.6); opacity: 0; }
+  12%  { opacity: .95; }
+  100% { transform: translateY(-560px) translateX(var(--drift, 20px)) scale(1.1); opacity: 0; }
+}
+
+/* ---------- 4. Offer popup ---------- */
+.diwali-modal .modal-dialog { max-width: 470px; }
+.diwali-modal .modal-content {
+  border: 0;
+  border-radius: 26px;
+  overflow: hidden;
+  background: #fffaf2;
+  box-shadow: 0 30px 80px rgba(127, 29, 29, .5), 0 0 0 3px var(--diwali-gold);
+}
+.diwali-modal.fade .modal-dialog { transform: scale(.88) translateY(24px); transition: transform .45s cubic-bezier(.2, 1.2, .3, 1); }
+.diwali-modal.show .modal-dialog { transform: none; }
+.modal-backdrop.show { --bs-backdrop-opacity: .7; }
+
+.dm-hero {
+  position: relative;
+  text-align: center;
+  padding: 30px 24px 50px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 212, 59, .35) 0%, rgba(255, 212, 59, 0) 60%),
+    linear-gradient(160deg, #7f1d1d 0%, #b91c1c 55%, #d9480f 100%);
+  overflow: hidden;
+}
+.dm-hero::before {
+  content: '';
+  position: absolute;
+  width: 330px; height: 330px;
+  left: 50%; top: -110px;
+  margin-left: -165px;
+  background: url('../assets/mandala.svg') center / contain no-repeat;
+  opacity: .3;
+  animation: mandalaSpin 90s linear infinite;
+}
+.dm-hero > * { position: relative; }
+.dm-diya { width: 74px; height: 74px; filter: drop-shadow(0 0 18px rgba(255, 212, 59, .9)); animation: diyaGlow 2.2s ease-in-out infinite; }
+@keyframes diyaGlow { 0%, 100% { filter: drop-shadow(0 0 12px rgba(255, 212, 59, .7)); } 50% { filter: drop-shadow(0 0 26px rgba(255, 212, 59, 1)); } }
+.dm-kicker {
+  display: inline-block;
+  margin: 6px 0 8px;
+  padding: 4px 16px;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #7c2d12;
+  background: linear-gradient(135deg, #fff3bf, #ffd43b);
+}
+.dm-title { font-family: var(--font-heading); font-weight: 800; font-size: 1.95rem; line-height: 1.1; color: #fff; margin: 0; }
+.dm-title span { color: var(--diwali-gold-soft); }
+.dm-close {
+  position: absolute !important;
+  top: 12px; right: 12px;
+  z-index: 3;
+  width: 34px; height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .2);
+  color: #fff;
+  font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition-smooth);
+}
+.dm-close:hover { background: rgba(255, 255, 255, .38); transform: rotate(90deg); }
+
+.dm-price-card {
+  position: relative;
+  margin: -34px 22px 0;
+  padding: 16px 18px 14px;
+  text-align: center;
+  background: #fff;
+  border: 2px solid var(--diwali-gold);
+  border-radius: 20px;
+  box-shadow: 0 14px 30px rgba(217, 72, 15, .18);
+}
+.dm-from { font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #9a3412; }
+.dm-price { font-family: var(--font-heading); font-weight: 800; font-size: 3.1rem; line-height: 1; color: #b91c1c; }
+.dm-price small { font-size: 1.3rem; font-weight: 700; color: #9a3412; }
+.dm-sub { font-size: .9rem; font-weight: 700; color: #1e293b; }
+
+.dm-body { padding: 18px 24px 22px; }
+.dm-list { list-style: none; padding: 0; margin: 0 0 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 9px 12px; }
+.dm-list li {
+  display: flex; align-items: center; gap: 9px;
+  padding: 9px 11px;
+  font-size: .86rem; font-weight: 700; color: #1e293b;
+  background: #fff;
+  border: 1px solid #f6dcae;
+  border-radius: 12px;
+}
+.dm-list li i { color: var(--diwali-saffron); font-size: 1.1rem; }
+.dm-list li.wide { grid-column: 1 / -1; background: linear-gradient(135deg, #fff3bf, #ffe8a3); border-color: var(--diwali-gold); }
+.dm-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.dm-actions .btn { justify-content: center; padding: 13px 10px; font-size: .95rem; }
+.dm-note { margin: 12px 0 0; text-align: center; font-size: .78rem; color: #7c2d12; font-weight: 600; }
+.dm-skip {
+  display: block; margin: 8px auto 0;
+  background: none; border: 0;
+  font-size: .8rem; color: #94826a;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+
+/* Floating "Diwali Offer" reopen chip */
+.diwali-chip {
+  position: fixed;
+  left: 18px; bottom: 20px;
+  z-index: 998;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 9px 16px 9px 10px;
+  border: 2px solid var(--diwali-gold);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #7f1d1d 0%, #b91c1c 100%);
+  color: #fff;
+  font-weight: 800;
+  font-size: .86rem;
+  box-shadow: 0 10px 26px rgba(127, 29, 29, .45);
+  animation: chipPulse 2.6s ease-in-out infinite;
+  cursor: pointer;
+}
+.diwali-chip svg { width: 28px; height: 28px; }
+.diwali-chip small { display: block; font-size: .68rem; font-weight: 700; color: var(--diwali-gold-soft); line-height: 1; }
+@keyframes chipPulse { 0%, 100% { box-shadow: 0 10px 26px rgba(127, 29, 29, .45), 0 0 0 0 rgba(250, 176, 5, .55); } 50% { box-shadow: 0 10px 26px rgba(127, 29, 29, .45), 0 0 0 12px rgba(250, 176, 5, 0); } }
+
+/* ---------- 5. In-page Diwali PC offer banner ---------- */
+.diwali-offer-banner {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 34px;
+  padding: 30px 32px;
+  border-radius: 26px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 92% 10%, rgba(255, 212, 59, .35) 0%, rgba(255, 212, 59, 0) 45%),
+    linear-gradient(135deg, #7f1d1d 0%, #b91c1c 55%, #d9480f 100%);
+  border: 3px solid var(--diwali-gold);
+  box-shadow: 0 24px 50px -12px rgba(127, 29, 29, .5);
+}
+.diwali-offer-banner::before {
+  content: '';
+  position: absolute;
+  width: 360px; height: 360px;
+  right: -110px; top: -120px;
+  background: url('../assets/mandala.svg') center / contain no-repeat;
+  opacity: .25;
+  animation: mandalaSpin 100s linear infinite;
+}
+.diwali-offer-banner > * { position: relative; }
+.dob-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 4px 14px 4px 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fff3bf, #ffd43b);
+  color: #7c2d12;
+  font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+}
+.dob-tag svg { width: 22px; height: 22px; }
+.dob-title { color: #fff; font-weight: 800; font-size: 2rem; margin: 12px 0 4px; }
+.dob-price { font-family: var(--font-heading); font-weight: 800; font-size: 2.9rem; line-height: 1; color: var(--diwali-gold-soft); }
+.dob-price small { font-size: 1.2rem; color: #fff; font-weight: 600; margin-right: 6px; }
+.dob-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+.dob-chips li {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .16);
+  border: 1px solid rgba(255, 255, 255, .35);
+  font-size: .86rem; font-weight: 700;
+}
+.dob-chips li i { color: var(--diwali-gold-soft); }
+.btn-gold {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 24px;
+  border: 0; border-radius: 12px;
+  font-weight: 800; color: #7c2d12;
+  background: linear-gradient(135deg, #ffe066 0%, #fab005 100%);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+.btn-gold:hover { transform: translateY(-2px); color: #7c2d12; }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 22px;
+  border: 2px solid rgba(255, 255, 255, .7); border-radius: 12px;
+  font-weight: 800; color: #fff; background: transparent; text-decoration: none;
+  transition: var(--transition-smooth);
+}
+.btn-ghost:hover { background: rgba(255, 255, 255, .16); color: #fff; transform: translateY(-2px); }
+
+/* ---------- 6. E-Waste exchange section ---------- */
+.ewaste-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(250, 176, 5, .18) 0%, rgba(250, 176, 5, 0) 38%),
+    linear-gradient(180deg, #fff6e6 0%, #fffaf2 100%);
+}
+.ewaste-section::before {
+  content: '';
+  position: absolute;
+  width: 420px; height: 420px;
+  right: -150px; top: -120px;
+  background: url('../assets/mandala.svg') center / contain no-repeat;
+  opacity: .14;
+  animation: mandalaSpin 140s linear infinite;
+  pointer-events: none;
+}
+.ewaste-section .container { position: relative; }
+
+.ew-headline { font-weight: 800; font-size: 2.7rem; line-height: 1.12; color: #0f172a; }
+.ew-headline .ew-get { color: #b91c1c; position: relative; white-space: nowrap; }
+.ew-headline .ew-get::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: -4px; height: 8px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #fab005, #ffd43b);
+  z-index: -1;
+}
+.ew-lead { font-size: 1.12rem; color: #475569; max-width: 560px; }
+.ew-lines { list-style: none; margin: 18px 0 24px; padding: 0; display: grid; gap: 10px; }
+.ew-lines li {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-weight: 700; color: #1e293b;
+}
+.ew-lines li i {
+  flex-shrink: 0;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #ffe066, #fab005);
+  color: #7c2d12; font-size: .95rem;
+}
+
+.ew-media {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 4px solid #fff;
+  box-shadow: 0 28px 55px -14px rgba(127, 29, 29, .45), 0 0 0 3px var(--diwali-gold);
+}
+.ew-media img { display: block; width: 100%; height: 400px; object-fit: cover; }
+.ew-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(127, 29, 29, 0) 45%, rgba(127, 29, 29, .75) 100%); }
+.ew-media-caption { position: absolute; z-index: 2; left: 20px; right: 20px; bottom: 18px; color: #fff; font-weight: 800; font-size: 1.2rem; line-height: 1.25; text-shadow: 0 2px 10px rgba(0, 0, 0, .4); }
+.ew-media-caption small { display: block; font-size: .82rem; font-weight: 600; color: var(--diwali-gold-soft); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+.ew-float {
+  position: absolute; z-index: 3;
+  top: 16px; right: 16px;
+  padding: 9px 16px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ffe066, #fab005);
+  color: #7c2d12;
+  font-weight: 800; font-size: .86rem; text-align: center; line-height: 1.15;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .3);
+  transform: rotate(4deg);
+}
+.ew-float b { display: block; font-size: 1.15rem; }
+
+/* give → get exchange */
+.ew-exchange {
+  margin-top: 46px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 22px;
+  align-items: stretch;
+}
+.ew-panel {
+  padding: 26px 26px 22px;
+  background: #fff;
+  border: 2px solid #f6dcae;
+  border-radius: 24px;
+  box-shadow: var(--card-shadow);
+}
+.ew-panel.is-get {
+  border-color: var(--diwali-gold);
+  background: linear-gradient(180deg, #fffdf3 0%, #fff6d6 100%);
+  box-shadow: 0 20px 40px -12px rgba(250, 176, 5, .45);
+}
+.ew-panel-tag {
+  display: inline-block; margin-bottom: 10px;
+  padding: 4px 14px; border-radius: 999px;
+  font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: #fff; background: #64748b;
+}
+.is-get .ew-panel-tag { background: linear-gradient(135deg, #b91c1c, #d9480f); }
+.ew-panel h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 14px; }
+.ew-items { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ew-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: #fffaf2;
+  border: 1px solid #f1e2cc;
+  font-weight: 700; font-size: .88rem; color: #1e293b;
+}
+.ew-item i { font-size: 1.25rem; color: #64748b; }
+.is-get .ew-item { background: #fff; border-color: #ffe08a; }
+.is-get .ew-item i { color: #d9480f; }
+.ew-item.is-hot { grid-column: 1 / -1; font-size: .95rem; }
+.ew-item .ew-badge { margin-left: auto; padding: 2px 9px; border-radius: 999px; font-size: .68rem; font-weight: 800; color: #fff; background: #b91c1c; letter-spacing: .04em; }
+.ew-arrow {
+  align-self: center;
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; color: #fff;
+  background: linear-gradient(135deg, #b91c1c, #d9480f);
+  box-shadow: 0 0 0 8px rgba(250, 176, 5, .3), 0 12px 24px rgba(185, 28, 28, .35);
+  animation: arrowNudge 1.8s ease-in-out infinite;
+}
+@keyframes arrowNudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
+
+/* how it works */
+.ew-steps { margin-top: 30px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: ewstep; }
+.ew-step {
+  position: relative;
+  padding: 22px 18px 18px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #f1e2cc;
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+}
+.ew-step::before {
+  counter-increment: ewstep;
+  content: counter(ewstep);
+  position: absolute; top: -14px; left: 50%; margin-left: -15px;
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: .9rem; color: #7c2d12;
+  background: linear-gradient(135deg, #ffe066, #fab005);
+  border: 2px solid #fff;
+  box-shadow: 0 4px 10px rgba(217, 72, 15, .3);
+}
+.ew-step i { display: block; font-size: 1.9rem; color: #d9480f; margin-bottom: 6px; }
+.ew-step h4 { font-size: 1rem; font-weight: 800; margin-bottom: 4px; }
+.ew-step p { margin: 0; font-size: .84rem; color: #64748b; }
+
+.ew-cta {
+  margin-top: 34px;
+  padding: 24px 28px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px;
+  border-radius: 22px;
+  color: #fff;
+  background: linear-gradient(135deg, #7f1d1d 0%, #b91c1c 60%, #d9480f 100%);
+  border: 3px solid var(--diwali-gold);
+  box-shadow: 0 20px 44px -12px rgba(127, 29, 29, .5);
+}
+.ew-cta h3 { color: #fff; font-size: 1.45rem; margin: 0 0 2px; }
+.ew-cta p { margin: 0; color: #ffe8cc; font-weight: 600; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 991px) {
+  .ew-headline { font-size: 2.2rem; }
+  .ew-exchange { grid-template-columns: 1fr; }
+  .ew-arrow { margin: 0 auto; transform: rotate(90deg); animation: none; }
+  .ew-steps { grid-template-columns: 1fr 1fr; row-gap: 26px; }
+  .ew-media img { height: 320px; }
+}
+@media (max-width: 576px) {
+  .diwali-strip { font-size: .82rem; }
+  .hero-diwali-pill { font-size: .8rem; padding: 6px 12px 6px 8px; text-align: left; }
+  .ew-headline { font-size: 1.85rem; }
+  .ew-items { grid-template-columns: 1fr; }
+  .ew-steps { grid-template-columns: 1fr; }
+  .diwali-offer-banner { padding: 24px 20px; }
+  .dob-title { font-size: 1.55rem; }
+  .dob-price { font-size: 2.3rem; }
+  .dm-title { font-size: 1.6rem; }
+  .dm-price { font-size: 2.6rem; }
+  .dm-list { grid-template-columns: 1fr; }
+  .diwali-chip { left: 12px; bottom: 14px; padding: 7px 13px 7px 8px; }
+  .navbar-custom::before, .navbar-custom::after { height: 28px; background-size: 130px 28px; }
+  .hero-photographic-section::before { width: 300px; height: 300px; }
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .diwali-strip-track { animation: none; width: auto; flex-wrap: wrap; justify-content: center; white-space: normal; }
+  .diwali-strip-group.dup { display: none; }
+  .diwali-strip-group { min-width: 0; flex-wrap: wrap; justify-content: center; }
+  .navbar-custom::before, .navbar-custom::after,
+  .hero-photographic-section::before, .hero-photographic-section::after,
+  .diwali-offer-banner::before, .ewaste-section::before, .dm-hero::before,
+  .dm-diya, .diwali-chip, .ew-arrow, .spark { animation: none !important; }
+  .spark { display: none; }
+  .diwali-modal.fade .modal-dialog { transition: none; }
+}

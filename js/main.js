@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroPhotoGallery();
   initRepairEstimator();
   initSmoothScroll();
+  initDiwaliPopup();
+  initDiwaliSparks();
 });
 
 /* ==========================================================================
@@ -111,6 +113,7 @@ const ESTIMATOR_DATA = {
     doorstepTime: 'Same-Day Build & Delivery in Boisar',
     warranty: '3 Years Comprehensive Brand Warranty',
     issues: [
+      { id: 'build_diwali', name: 'Diwali Special Custom PC (Intel i3 + SSD + 8GB RAM + 19" Monitor + Full Setup)', minPrice: 10999, maxPrice: 10999, recommended: true, desc: 'Festive offer: complete ready-to-use desktop starting from ₹10,999/-' },
       { id: 'build_office', name: 'Smart Office Pro Setup (Tally, GST & Billing)', minPrice: 12999, maxPrice: 18500, recommended: true, desc: 'Intel Core i3, 8GB RAM, 256GB NVMe SSD, 19" LED Monitor, ATX Cabinet & USB Peripherals' },
       { id: 'build_gaming_budget', name: 'Performance Pro Desktop (Coding & Fast Multitasking)', minPrice: 28000, maxPrice: 38000, recommended: true, desc: 'Intel i5 9th Gen, 8GB DDR4, 256GB SSD + 500GB HDD, ATX Gaming Cabinet, 19" Monitor' },
       { id: 'build_tarapur_cad', name: 'CAD Station (AutoCAD, SolidWorks & 1080p Video)', minPrice: 48000, maxPrice: 65000, recommended: false, desc: 'Intel i5 12th Gen, H610, 2GB Dedicated GPU, 8GB RAM, 22" FHD Monitor & Antivirus' },
@@ -144,6 +147,11 @@ const ESTIMATOR_DATA = {
   }
 };
 
+function formatRange(min, max) {
+  const f = n => '₹' + n.toLocaleString('en-IN');
+  return min === max ? f(min) : `${f(min)} - ${f(max)}`;
+}
+
 function initRepairEstimator() {
   let selectedCategory = 'laptop';
   let selectedIssues = new Set(['lap_os', 'lap_ssd']);
@@ -175,7 +183,7 @@ function initRepairEstimator() {
 
       const priceHtml = isEwaste
         ? `<div class="issue-pill-price text-success fw-bold">Free Pickup / Scrap Value</div><div class="text-muted" style="font-size: 0.72rem;">Eco Disposal</div>`
-        : `<div class="issue-pill-price">₹${issue.minPrice.toLocaleString('en-IN')} - ₹${issue.maxPrice.toLocaleString('en-IN')}</div><div class="text-muted" style="font-size: 0.72rem;">Estimated Cost</div>`;
+        : `<div class="issue-pill-price">${formatRange(issue.minPrice, issue.maxPrice)}</div><div class="text-muted" style="font-size: 0.72rem;">Estimated Cost</div>`;
 
       itemEl.innerHTML = `
         <div class="d-flex align-items-center gap-3">
@@ -245,7 +253,7 @@ function initRepairEstimator() {
       if (selectedCategory === 'ewaste') {
         totalPriceElem.textContent = 'Free Pickup / Best Value';
       } else {
-        totalPriceElem.textContent = `₹${minTotal.toLocaleString('en-IN')} - ₹${maxTotal.toLocaleString('en-IN')}`;
+        totalPriceElem.textContent = formatRange(minTotal, maxTotal);
       }
     }
     if (categorySummaryElem) {
@@ -263,7 +271,7 @@ function initRepairEstimator() {
 
     const costText = selectedCategory === 'ewaste'
       ? 'Free Doorstep Pickup / Best Scrap Valuation'
-      : `₹${minTotal.toLocaleString('en-IN')} - ₹${maxTotal.toLocaleString('en-IN')}`;
+      : formatRange(minTotal, maxTotal);
 
     const waText = encodeURIComponent(
       `Hello Sadguru Computers!\n\n` +
@@ -323,7 +331,7 @@ function initSmoothScroll() {
           behavior: 'smooth'
         });
 
-        const navbarCollapse = document.getElementById('navbarNav');
+        const navbarCollapse = document.getElementById('navbarMain');
         if (navbarCollapse && navbarCollapse.classList.contains('show')) {
           const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
           if (bsCollapse) bsCollapse.hide();
@@ -331,4 +339,59 @@ function initSmoothScroll() {
       }
     });
   });
+}
+
+
+/* ==========================================================================
+   5. DIWALI OFFER POPUP (shows once per browser session)
+   ========================================================================== */
+function initDiwaliPopup() {
+  const modalEl = document.getElementById('diwaliOfferModal');
+  if (!modalEl || typeof bootstrap === 'undefined') return;
+
+  const SEEN_KEY = 'sgcDiwaliOfferSeen';
+  let alreadySeen = false;
+  try { alreadySeen = sessionStorage.getItem(SEEN_KEY) === '1'; } catch (e) { /* storage blocked: just show it */ }
+
+  const markSeen = () => { try { sessionStorage.setItem(SEEN_KEY, '1'); } catch (e) {} };
+  modalEl.addEventListener('shown.bs.modal', markSeen);
+
+  if (!alreadySeen) {
+    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+    setTimeout(() => {
+      // don't pop over someone who already opened it (e.g. via the strip or chip)
+      if (!modalEl.classList.contains('show')) modal.show();
+    }, 1200);
+  }
+
+  // Tapping a contact button in the popup closes it so the dialer/WhatsApp opens cleanly
+  modalEl.querySelectorAll('.dm-actions a').forEach(a => {
+    a.addEventListener('click', () => {
+      const inst = bootstrap.Modal.getInstance(modalEl);
+      if (inst) setTimeout(() => inst.hide(), 300);
+    });
+  });
+}
+
+/* ==========================================================================
+   6. DIWALI HERO SPARKS (skipped for reduced-motion users)
+   ========================================================================== */
+function initDiwaliSparks() {
+  const hero = document.querySelector('.hero-photographic-section');
+  if (!hero) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const COUNT = window.innerWidth < 576 ? 10 : 18;
+  for (let i = 0; i < COUNT; i++) {
+    const spark = document.createElement('span');
+    spark.className = 'spark';
+    spark.setAttribute('aria-hidden', 'true');
+    spark.style.left = (Math.random() * 100).toFixed(1) + '%';
+    spark.style.animationDuration = (6 + Math.random() * 7).toFixed(1) + 's';
+    spark.style.animationDelay = (-Math.random() * 12).toFixed(1) + 's';
+    spark.style.setProperty('--drift', ((Math.random() - 0.5) * 80).toFixed(0) + 'px');
+    const size = 3 + Math.random() * 5;
+    spark.style.width = spark.style.height = size.toFixed(1) + 'px';
+    hero.appendChild(spark);
+  }
 }
